@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Nx Debug",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "nx",
+      "runtimeArgs": ["run","api-server:serve:development", "--inspect"],
+      "skipFiles": ["/**", "${workspaceFolder}/node_modules/*"],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+    },
+    {
+      "name": "debug-jest-lib",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/@angular/cli/bin/ng",
+      "args": [
+        "test",
+        "cars",
+        "--codeCoverage=false",
+        "--testNamePattern=*.spec.ts",
+        "--testFile=${workspaceFolder}/libs/cars/src/lib/cars.service.spec.ts"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole"
+    }
+  ]
+}
