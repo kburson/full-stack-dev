@@ -2,7 +2,15 @@
   "name": "@6.0-final/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "npx nx run api-server:build --configuration=production",
+    "lint": "npx nx run api-server:lint",
+    "test": "npx nx run api-server:test",
+    "format": "npx nx format:write",
+    "e2e": "npx nx run api-server:e2e",
+    "dev": "npx nx run api-server:serve --configuration=development",
+    "prod": "npx nx run api-server:serve --configuration=production"
+  },
   "private": true,
   "dependencies": {
     "axios": "^1.6.0",

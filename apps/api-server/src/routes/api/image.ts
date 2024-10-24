@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Router, Request, Response } from 'express';
 import { isEmpty } from 'lodash';
 import fs from 'node:fs';
 import processImage, {
@@ -48,4 +48,6 @@ async function imageRouteHandler(_req: Request, res: Response) {
   }
 }
 
-export default imageRouteHandler;
+const router = Router();
+router.get('/image/:imageName',imageRouteHandler);
+export default router;
