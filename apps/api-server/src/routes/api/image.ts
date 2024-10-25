@@ -49,5 +49,12 @@ async function imageRouteHandler(_req: Request, res: Response) {
 }
 
 const router = Router();
+
+/**
+ * GET /api/image/{imageName}
+ * @summary resize or reformat a stored image
+ * @return {ImageData} 200 - success response
+ */
 router.get('/image/:imageName',imageRouteHandler);
+
 export default router;

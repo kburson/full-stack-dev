@@ -14,6 +14,22 @@ the `./apps` folder contains a folder for each independently deployable applicat
 
 ### management scripts
 
+**Quick Start**
+
+I have created some npm scripts to make it easy to perform the basic tasks on this project without understanding the Nx DevTools framework.
+
+| CLI | Description |
+|-----------------|-------------------|
+| `npm run build`  | build and save the development artifacts into the `dist` folder |
+| `npm run lint`   | run lint on all ts code |
+| `npm run format` | run prettier on all ts / md files |
+| `npm test`       | run jest for api-server spec files |
+| `npm e2e`        | run cypress for api-e2e files |
+| `npm start`      | build api-server and start as development server (auto-reloading) |
+
+
+**Using Nx Console**
+
 The easiest way to manage the application lifecycle is to use the **Nx Console** extension for VS Code.  This will provide simple navigation of available commands to build, lint, format, test, serve, package...
 
 `npx nx run ${app-name}:${command} --{option}={value}`
