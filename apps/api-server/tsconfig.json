@@ -1,7 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "files": [],
-  "include": [],
+  "include": ["src/swaggerGenerator.js"],
+  "exclude": [],
   "references": [
     {
       "path": "./tsconfig.app.json"
@@ -12,5 +13,12 @@
   ],
   "compilerOptions": {
     "esModuleInterop": true
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "disabled-compilerOptions": {
+    "resolveJsonModule": true
   }
 }

@@ -1,0 +1,163 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "api-server host"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Image Processor",
+      "description": "API for processing image files"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Default server path",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Some description...",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/image/{imageName}": {
+      "get": {
+        "tags": [
+          "Image Processor"
+        ],
+        "summary": "Fetch image and resize or trasnform to file type before returning transformed image file",
+        "description": "",
+        "parameters": [
+          {
+            "name": "imageName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "full name of image file, including extension, you want to fetch"
+          },
+          {
+            "name": "width",
+            "in": "query",
+            "description": "Width in pixels that you want to resize image to",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "height",
+            "in": "query",
+            "description": "Height in pixels that you want to resize image to",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "fit",
+            "in": "query",
+            "description": "name of algorithm used to fit the image into the resized frame",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cover",
+                "fill",
+                "inside",
+                "outside",
+                "contain"
+              ]
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "file format to transforme the image to.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "jpg",
+                "png",
+                "gif",
+                "tiff",
+                "webp"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "oneOf": [
+                {
+                  "image/jpg": {
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "image/png": {
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "image/gif": {
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "image/tiff": {
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "image/webp": {
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "204": {
+            "description": "\"No content\": The file could not be found"
+          },
+          "400": {
+            "description": "\"Bad Request\""
+          },
+          "404": {
+            "description": "\"Not Found\": Could not find the endpoint requested"
+          }
+        }
+      }
+    }
+  }
+}

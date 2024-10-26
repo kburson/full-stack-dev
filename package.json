@@ -1,23 +1,29 @@
 {
   "name": "@6.0-final/source",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "clean": "rm -f ./apps/api-server/src/assets/thumbnails/*.*",
+    "prebuild": "npm run clean && npm run swagger",
     "build": "npx nx run api-server:build --configuration=production",
     "lint": "npx nx run api-server:lint",
-    "test": "npx nx run api-server:test",
+    "test": "npx nx run api-server:test -- --verbose",
+    "test:watch": "npx nx run api-server:test -- --watch",
     "format": "npx nx format:write",
     "e2e": "npx nx run api-server:e2e",
+    "prestart": "npm run swagger",
     "start": "npx nx run api-server:serve --configuration=development",
-    "prod": "npx nx run api-server:serve --configuration=production"
+    "prod": "npx nx run api-server:serve --configuration=production",
+    "swagger": "node ./apps/api-server/src/swaggerGenerator.js",
+    "view:coverage": "open ./reports/apps/api-server/coverage/index.html "
   },
   "private": true,
   "dependencies": {
     "axios": "^1.6.0",
     "express": "~4.18.1",
-    "express-jsdoc-swagger": "^1.8.0",
     "lodash": "^4.17.21",
     "sharp": "^0.33.5",
+    "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
@@ -34,6 +40,7 @@
     "@swc/helpers": "~0.5.11",
     "@types/express": "~4.17.13",
     "@types/jest": "^29.5.12",
+    "@types/lodash": "^4.17.12",
     "@types/node": "~18.16.9",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.6",
@@ -42,13 +49,21 @@
     "eslint-config-prettier": "^9.0.0",
     "jest": "^29.7.0",
     "jest-environment-node": "^29.7.0",
+    "jest-tap-reporter": "^1.9.0",
     "nx": "20.0.3",
     "prettier": "^2.6.2",
-    "swagger-jsdoc": "^6.2.8",
+    "rimraf": "^6.0.1",
+    "supertest": "^7.0.0",
+    "swagger-autogen": "^2.23.7",
     "ts-jest": "^29.1.0",
-    "ts-node": "10.9.1",
+    "ts-node": "^10.9.1",
     "tslib": "^2.3.0",
     "typescript": "~5.5.2",
     "typescript-eslint": "^8.0.0"
+  },
+  "jest": {
+    "reporters": [
+      "jest-tap-reporter"
+    ]
   }
 }

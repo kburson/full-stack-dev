@@ -31,7 +31,9 @@
     {
       "plugin": "@nx/jest/plugin",
       "options": {
-        "targetName": "test"
+        "targetName": "test",
+        "coverage": true,
+        "coverageReporters": ["lcov"]
       },
       "exclude": ["apps/api-server-e2e/**/*"]
     }

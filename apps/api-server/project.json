@@ -4,6 +4,7 @@
   "sourceRoot": "apps/api-server/src",
   "projectType": "application",
   "tags": [],
+
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
@@ -12,14 +13,16 @@
       "options": {
         "platform": "node",
         "outputPath": "dist",
-        "assets": [{
-          "input": "apps/api-server/src/assets/**/*",
-          "glob": "**/*",
-          "output": "./"
-        }],
+        "assets": [
+          {
+            "input": "apps/api-server/src/assets/",
+            "glob": "**/*",
+            "output": "apps/api-server/src/assets"
+          }
+        ],
         "format": ["cjs"],
         "bundle": false,
-        "main": "apps/api-server/src/main.ts",
+        "main": "apps/api-server/src/app.ts",
         "tsConfig": "apps/api-server/tsconfig.app.json",
         "generatePackageJson": true,
         "esbuildOptions": {
@@ -39,6 +42,15 @@
             }
           }
         }
+      }
+    },
+    "test": {
+      "options": {
+        "passWithNoTests": true,
+        "detectOpenHandles": true,
+        "codeCoverage": true,
+        "coverageDirectory": "../../reports/apps/api-server/coverage",
+        "coverageReporters": ["html"]
       }
     },
     "serve": {
