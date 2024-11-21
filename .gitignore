@@ -5,6 +5,7 @@ dist
 tmp
 /out-tsc
 reports
+.env
 
 # dependencies
 node_modules
